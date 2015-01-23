@@ -32,3 +32,11 @@ $ string levenshtein kitten -- kittah
 # js => s.levenshtein("kitten", "kittah");
 # => 2
 ```
+
+You can pipe data through different methods
+
+```bash
+echo "foo    bar" | string clean | string capitalize
+# js => s("foo    bar").clean().capitalize().value()
+# => Foo bar
+```
