@@ -1,0 +1,38 @@
+{
+  "name": "underscore.string.cli",
+  "version": "1.0.0",
+  "description": "Use underscore.string on your commandline",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter nyan --compilers js:mocha-traceur"
+  },
+  "bin": {
+    "string": "cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/stoeffel/underscore.string.cli"
+  },
+  "keywords": [
+    "underscore",
+    "string",
+    "cli"
+  ],
+  "author": "stoeffel",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://github.com/stoeffel/underscore.string.cli/issues"
+  },
+  "homepage": "http://github.com/stoeffel/underscore.string.cli",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.1.0",
+    "mocha-traceur": "^2.1.0"
+  },
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "minimist": "^1.1.0",
+    "ramda": "^0.8.0",
+    "underscore.string": "^3.0.1"
+  }
+}
