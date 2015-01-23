@@ -34,23 +34,31 @@ if (argv.help || argv._.length <= 0) {
     chalk.gray('# => 2')
   ].join('\n'));
 } else {
-  var readline = require('readline');
+  var str = string.str(argv._);
+  if (!str.length && str.length <= 0) {
+    var readline = require('readline');
 
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
-  });
+    var rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+      terminal: false
+    });
 
-  rl.on('line', function(cmd) {
-    var command = string.command(argv._);
-    var str = cmd || string.str(argv._);
-    var args = string.args(argv['--']);
+    rl.on('line', function(cmd) {
+      runCmd(argv, cmd);
+    });
+  } else {
+    runCmd(argv, str);
+  }
+}
 
-    if (string.has(command)) {
-      console.log(string.run(command, str, args));
-    } else {
-      console.error(chalk.red('Unknown command:', command));
-    }
-  });
+function runCmd(argv, str) {
+  var command = string.command(argv._);
+  var args = string.args(argv['--']);
+
+  if (string.has(command)) {
+    console.log(string.run(command, str, args));
+  } else {
+    console.error(chalk.red('Unknown command:', command));
+  }
 }
