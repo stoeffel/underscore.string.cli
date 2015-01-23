@@ -5,12 +5,16 @@ var argv = require('minimist')(process.argv.slice(2), {
   '--': true
 }),
   pkg = require('./package.json'),
+  string = require('./index'),
   chalk = require('chalk'),
-  string = require('./index');
+  repeat = require('underscore.string/repeat');
 
 if (argv.help || argv._.length <= 0) {
-  process.stdout.write([
-    chalk.bold.blue('# ' + pkg.name),
+  console.log([
+    '',
+    chalk.bold.blue(pkg.name),
+    chalk.bold.blue(repeat('=', pkg.name.length)),
+    '',
     pkg.description,
     '',
     'Usage',
@@ -31,10 +35,21 @@ if (argv.help || argv._.length <= 0) {
     '',
     '$ string levenshtein kitten -- kittah',
     chalk.gray('# js => s.levenshtein("kitten", "kittah");'),
-    chalk.gray('# => 2')
+    chalk.gray('# => 2'),
+    '',
+    '$ echo "foo    bar" | string clean | string capitalize',
+    chalk.gray('# js => s("foo    bar").clean().capitalize().value()'),
+    chalk.gray('# => Foo bar'),
+    ''
   ].join('\n'));
 } else {
   var str = string.str(argv._);
+  var command = string.command(argv._);
+  if (!string.has(command)) {
+    console.error(chalk.red('Unknown command:', command));
+    process.exit(1);
+  }
+
   if (!str.length && str.length <= 0) {
     var readline = require('readline');
 
