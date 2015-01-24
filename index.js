@@ -10,27 +10,27 @@ function isBoolean(x) {
 }
 
 module.exports.run = function(command, str, args) {
-  return s[command].apply(null, R.concat([str], args));
+  return R.apply(
+    s[command],
+    R.concat([str], args || [])
+  );
 };
 
 module.exports.commands = s;
 module.exports.command = R.head;
 module.exports.str = R.compose(R.join(' '), R.tail);
 
-module.exports.args = R.compose(
-    R.map(function(item) {
-      return R.cond(
-        [isNumber, Number],
-        [isBoolean, s.toBoolean],
-        [R.alwaysTrue, R.identity]
-      )(item);
-    })
-  );
+module.exports.args = R.map(
+  R.cond(
+    [isNumber, Number],
+    [isBoolean, s.toBoolean],
+    [R.alwaysTrue, R.identity]
+  )
+);
 
 module.exports.has = R.and(
-    R.flip(R.has)(s),
-    R.wrap(R.is(Function), function(f, x) {
-      return f(s[x]);
-    })
-  );
-
+  R.flip(R.has)(s),
+  R.wrap(R.is(Function), function(f, x) {
+    return f(s[x]);
+  })
+);

@@ -45,6 +45,9 @@ if (argv.help || argv._.length <= 0) {
 } else {
   var str = string.str(argv._);
   var command = string.command(argv._);
+  var args = string.args(argv['--']);
+
+
   if (!string.has(command)) {
     console.error(chalk.red('Unknown command:', command));
     process.exit(1);
@@ -59,18 +62,15 @@ if (argv.help || argv._.length <= 0) {
       terminal: false
     });
 
-    rl.on('line', function(cmd) {
-      runCmd(argv, cmd);
+    rl.on('line', function(str) {
+      runCmd(command, str, args);
     });
   } else {
-    runCmd(argv, str);
+    runCmd(command, str, args);
   }
 }
 
-function runCmd(argv, str) {
-  var command = string.command(argv._);
-  var args = string.args(argv['--']);
-
+function runCmd(command, str, args) {
   if (string.has(command)) {
     console.log(string.run(command, str, args));
   } else {

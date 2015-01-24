@@ -44,3 +44,11 @@ describe('#args', () => {
     expect(string.args(['1ok'])[0]).to.equal('1ok');
   });
 });
+
+describe('#run', () => {
+  it('runs the command', () => {
+    expect(string.run('camelize', 'hello world !', [])).to.eql('helloWorld!');
+    expect(string.run('camelize', 'hello world !')).to.eql('helloWorld!');
+    expect(string.run('camelize', 'Hello world !', [true])).to.eql('helloWorld!');
+  });
+});
