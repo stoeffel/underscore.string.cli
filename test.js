@@ -40,7 +40,7 @@ describe('#args', () => {
   });
 
   it('booleans should be booleans', () => {
-    expect(string.args(['false', 'true', '1'])).to.eql([false, true, 1]);
+    expect(string.args(['false', 'str', 'true', '1'])).to.eql([false, 'str', true, 1]);
     expect(string.args(['1ok'])[0]).to.equal('1ok');
   });
 });
