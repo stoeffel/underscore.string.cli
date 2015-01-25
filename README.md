@@ -11,7 +11,7 @@ Installation
 Usage
 -----
 
-You can use all methods from [underscore.string](http://epeli.github.io/underscore.string/), which take a string as its first argument.
+You can use all methods from [underscore.string](http://epeli.github.io/underscore.string/).
 
 ```bash
 $ string <command> <string> [-- options]
