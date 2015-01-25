@@ -23,6 +23,11 @@ describe('#str', () => {
   it('returns the second element of a list', () => {
     expect(string.str(['camelize', 'hello', 'world', '!'])).to.eql('hello world !');
   });
+
+  it('returns the second element of a list as an array if the method is an array-method', () => {
+    expect(string.str(['toSentence', 'foo', 'bar', 'moo'])).to.eql(['foo', 'bar', 'moo']);
+    expect(string.str(['toSentence', 'foo', 'bar', 'moo'])).to.eql(['foo', 'bar', 'moo']);
+  });
 });
 
 describe('#args', () => {
@@ -50,5 +55,7 @@ describe('#run', () => {
     expect(string.run('camelize', 'hello world !', [])).to.eql('helloWorld!');
     expect(string.run('camelize', 'hello world !')).to.eql('helloWorld!');
     expect(string.run('camelize', 'Hello world !', [true])).to.eql('helloWorld!');
+    expect(string.run('toSentence', ['foo', 'bar', 'moo'])).to.eql('foo, bar and moo');
+    expect(string.run('toSentence', ['foo', 'bar', 'moo'], ['.'])).to.eql('foo.bar and moo');
   });
 });
