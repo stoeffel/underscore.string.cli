@@ -24,7 +24,6 @@ if (argv.help || argv._.length <= 0) {
 
   if (!str.length && str.length <= 0) {
     var readline = require('readline');
-
     var rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -44,5 +43,6 @@ function runCmd(command, str, args) {
     console.log(string.run(command, str, args));
   } else {
     console.error(chalk.red('Unknown command:', command));
+    process.exit(1);
   }
 }
